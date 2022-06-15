@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="slimMargin">2dp</dimen>
+    <dimen name="minMargin">4dp</dimen>
+    <dimen name="standardMargin">8dp</dimen>
+    <dimen name="maxMargin">16dp</dimen>
+    <dimen name="xlargeMargin">32dp</dimen>
+
+    <dimen name="minPadding">4dp</dimen>
+    <dimen name="standardPadding">8dp</dimen>
+    <dimen name="maxPadding">16dp</dimen>
+
+    <dimen name="standardCardElevation">8dp</dimen>
+    <dimen name="standardCardRadius">8dp</dimen>
+    <dimen name="maxCardRadius">16dp</dimen>
+
+    <dimen name="xxlargeTextSize">32sp</dimen>
+    <dimen name="xlargeTextSize">24sp</dimen>
+    <dimen name="largeTextSize">18sp</dimen>
+    <dimen name="normalTextSize">16sp</dimen>
+    <dimen name="smallTextSize">12sp</dimen>
+
+    <dimen name="movieItemMinHeight">300dp</dimen>
+    <dimen name="movieItemMaxHeight">285dp</dimen>
+    <dimen name="movieItemMaxWidth">200dp</dimen>
+    <dimen name="networkErrorImageSize">200dp</dimen>
+    <dimen name="smallCircleButtonSize">32dp</dimen>
+
+    <dimen name="rippleRadius">16dp</dimen>
+
+    <dimen name="viewpager_next_item_visible">110dp</dimen>
+    <dimen name="viewpager_current_item_horizontal_margin">64dp</dimen>
+
+    <dimen name="closeIcon">48dp</dimen>
+
+</resources>

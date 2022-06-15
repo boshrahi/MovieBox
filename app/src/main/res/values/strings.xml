@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MovieBox</string>
+
+    <!-- Main activity -->
+    <string name="playing_now">Playing now</string>
+    <string name="most_popular">Most popular</string>
+    <string name="loading">Loading…</string>
+    <string name="error_fetching_data">Error in retrieving data! \n Please try again later.</string>
+    <string name="see_more">see more</string>
+    <string name="close_details">close movie details</string>
+    <string name="released_on">Released on</string>
+    <string name="lasts">Lasts</string>
+</resources>

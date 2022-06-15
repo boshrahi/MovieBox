@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/playingNowFragment">
+
+    <fragment
+        android:id="@+id/playingNowFragment"
+        android:name="com.boshra.moviebox.presentation.playingnow.PlayingNowFragment"
+        android:label="PlayingNowFragment" />
+    <fragment
+        android:id="@+id/mostPopularFragment"
+        android:name="com.boshra.moviebox.presentation.popular.PopularFragment"
+        android:label="MostPopularFragment" />
+</navigation>
