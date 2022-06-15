@@ -1,5 +1,6 @@
 # Branch Master
 This branch contains all codes and tests. All pages are in XML. 
+![Project Screenshots](https://github.com/boshrahi/MovieBox/blob/850950f25eab78bbdce896c06cec095dc1eed320/screenshots/movie_box.png)
 
 ## Implementation Approach
 
