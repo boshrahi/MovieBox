@@ -30,6 +30,7 @@
         style="@style/PageTitle"/>
 
     <include
+        android:id="@+id/layout_loading"
         layout="@layout/layout_loading"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
