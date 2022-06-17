@@ -67,10 +67,9 @@
                 android:id="@+id/iv_details_poster"
                 android:layout_width="@dimen/movieItemMaxWidth"
                 android:layout_height="@dimen/movieItemMaxHeight"
-                android:layout_marginTop="@dimen/maxMargin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_detail_title"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@android:drawable/alert_light_frame" />
 
             <TextView
@@ -115,12 +114,12 @@
                 android:layout_marginStart="@dimen/standardMargin"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/normalTextSize"
-                app:layout_constraintBottom_toBottomOf="@+id/textView5"
                 app:layout_constraintStart_toEndOf="@+id/tv_last_label"
                 app:layout_constraintTop_toTopOf="@+id/tv_last_label"
                 tools:text="TextView" />
 
             <include
+                android:id="@+id/layout_loading"
                 layout="@layout/layout_loading"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/movieItemMinHeight"
@@ -159,7 +158,7 @@
                 android:id="@+id/gr_details_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="tv_detail_title,tv_detail_date,tv_detail_runtime,tv_date_label,tv_last_label,iv_details_poster"
+                app:constraint_referenced_ids="tv_detail_date,tv_detail_runtime,tv_date_label,tv_last_label,iv_details_poster"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
