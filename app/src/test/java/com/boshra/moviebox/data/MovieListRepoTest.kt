@@ -34,7 +34,7 @@ class MovieListRepoTest {
         `when`(api.getNowPlayingMovies()).thenReturn(movies)
         val movieModels = movies.results.map{DataParser.toModel(it)}
 
-        repository.getMovies().collect{
+        repository.getPlayingNowMovies().collect{
             Truth.assertThat(it).isEqualTo(movieModels)
         }
     }
@@ -44,7 +44,7 @@ class MovieListRepoTest {
         val meg = "unauthorized"
         `when`(api.getNowPlayingMovies()).thenThrow(RuntimeException())
         try {
-            val flow = repository.getMovies()
+            val flow = repository.getPlayingNowMovies()
         }catch (e: RuntimeException){
             Truth.assertThat(e).hasMessageThat().isEqualTo(meg)
         }

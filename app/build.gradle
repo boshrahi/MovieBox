@@ -58,6 +58,7 @@ dependencies {
     //-------------- Coroutine
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
 
     //----------------- Nav
     implementation "androidx.navigation:navigation-fragment-ktx:2.4.2"
@@ -72,6 +73,9 @@ dependencies {
 
     //------------------- ViewPager2
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
+    //------------------- Paging 3
+    implementation "androidx.paging:paging-runtime-ktx:3.1.1"
 
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

@@ -7,6 +7,6 @@ class MovieListRepo @Inject constructor(
     private val moviesDataSource: MovieListDataSource
 ) {
 
-    fun getMovies() = moviesDataSource.getPlayingNowMovieList()
+    fun getPlayingNowMovies() = moviesDataSource.getPlayingNowMovieList()
     fun getMostPopularMovies() = moviesDataSource.getMostPopularMovieList()
 }
