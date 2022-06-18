@@ -1,26 +1,26 @@
 package com.boshra.moviebox.presentation.playingnow
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.boshra.moviebox.R
 import com.boshra.moviebox.databinding.ItemMoviesListBinding
-import com.boshra.moviebox.databinding.MovieItemBinding
 import com.boshra.moviebox.domain.model.MovieModel
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.item_movies_list.view.*
 
 class PlayingNowMovieAdapter(
     private var onClick : (MovieModel) -> Unit,
 ) : PagingDataAdapter<MovieModel, PlayingNowMovieAdapter.MovieViewHolder>(MoviesDiffCallback) {
 
-
+    companion object{
+        const val SHOW_ITEM = 0
+        const val LOADING_ITEM = 1
+        const val NO_ITEM = 2
+    }
     inner class MovieViewHolder(private val binding: ItemMoviesListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -55,6 +55,11 @@ class PlayingNowMovieAdapter(
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         getItem(position)?.let { holder.bindData(it, position) }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (position == itemCount) SHOW_ITEM
+        else LOADING_ITEM
     }
 
     object MoviesDiffCallback : DiffUtil.ItemCallback<MovieModel>() {

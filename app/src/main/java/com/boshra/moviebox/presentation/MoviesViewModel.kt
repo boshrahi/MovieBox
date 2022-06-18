@@ -4,14 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.boshra.moviebox.core.state.StateData
 import com.boshra.moviebox.core.state.StateMutableLiveData
 import com.boshra.moviebox.domain.model.MovieModel
 import com.boshra.moviebox.framework.Interactors
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
@@ -23,9 +21,6 @@ class MoviesViewModel @Inject constructor(
 ): ViewModel() {
 
     //---------- Live data
-    private lateinit var _playingNowMovies : Flow<PagingData<MovieModel>>
-    val playingNowMovies: Flow<PagingData<MovieModel>>
-        get() = _playingNowMovies
 
     private val _mostPopularMovies = StateMutableLiveData<List<MovieModel>>()
     val mostPopularMovies: LiveData<StateData<List<MovieModel>>>
@@ -35,14 +30,9 @@ class MoviesViewModel @Inject constructor(
     val popularMovieInfo: LiveData<MovieModel?>
         get() = _popularMovieInfo
 
-    init {
-        getPlayingNowMovies()
-    }
 
-    fun getPlayingNowMovies() = viewModelScope.launch {
-        val result = interactors.getPlayingNowMovies().cachedIn(viewModelScope)
-        _playingNowMovies = result
-    }
+    fun getPlayingNowMovies() = interactors.getPlayingNowMovies().cachedIn(viewModelScope)
+
 
     fun getMostPopularMovies() = viewModelScope.launch {
         interactors.getMostPopularMovies()

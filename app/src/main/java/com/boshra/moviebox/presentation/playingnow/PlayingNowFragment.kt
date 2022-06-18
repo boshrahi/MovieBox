@@ -10,15 +10,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import com.boshra.moviebox.R
 import com.boshra.moviebox.core.ext.gone
 import com.boshra.moviebox.core.ext.show
-import com.boshra.moviebox.core.state.StateData
 import com.boshra.moviebox.databinding.FragPlayingNowBinding
 import com.boshra.moviebox.presentation.MoviesViewModel
+import com.boshra.moviebox.presentation.custom.PagingLoadStateAdapter
 import com.boshra.moviebox.presentation.details.DetailActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -42,28 +42,45 @@ class PlayingNowFragment : Fragment(R.layout.frag_playing_now) {
             requireActivity().startActivity(intent)
         }
 
-        binding.rvMoviesList.adapter = moviesAdapter
-        binding.rvMoviesList.layoutManager = GridLayoutManager(requireActivity(),2)
+        val layoutManager = GridLayoutManager(requireActivity(),2)
+        layoutManager.spanSizeLookup = object : SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return if (moviesAdapter.getItemViewType(position) ==
+                    PlayingNowMovieAdapter.LOADING_ITEM)
+                    1
+                else layoutManager.spanCount
+            }
+        }
+        binding.rvMoviesList.adapter = moviesAdapter.withLoadStateHeaderAndFooter(
+            header = PagingLoadStateAdapter(moviesAdapter),
+            footer = PagingLoadStateAdapter(moviesAdapter)
+        )
+
+        binding.rvMoviesList.layoutManager = layoutManager
 
 
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            moviesAdapter.loadStateFlow.collectLatest {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                moviesAdapter.loadStateFlow.collectLatest {
 
-                when (it.refresh) {
-                    is LoadState.Loading -> binding.layoutLoading.loadingGroup.show()
-                    is LoadState.Error -> {
-                        binding.layoutLoading.pgLoading.gone()
-                        binding.layoutLoading.tvLoading.text =
-                            getString(R.string.error_fetching_data)
+                    when (it.refresh) {
+                        is LoadState.Loading -> binding.layoutLoading.loadingGroup.show()
+                        is LoadState.Error -> {
+                            binding.layoutLoading.pgLoading.gone()
+                            binding.layoutLoading.tvLoading.text =
+                                getString(R.string.error_fetching_data)
+                        }
+                        else -> binding.layoutLoading.loadingGroup.gone()
                     }
-                    else -> binding.layoutLoading.loadingGroup.gone()
                 }
             }
 
         }
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.playingNowMovies.collect {
-                moviesAdapter.submitData(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.getPlayingNowMovies().collectLatest {
+                    moviesAdapter.submitData(it)
+                }
             }
         }
     }
