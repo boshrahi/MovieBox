@@ -8,6 +8,8 @@ import androidx.paging.LoadStateAdapter
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.boshra.moviebox.R
+import com.boshra.moviebox.core.ext.hide
+import com.boshra.moviebox.core.ext.show
 import com.boshra.moviebox.databinding.ItemLoadingStateBinding
 
 
@@ -43,7 +45,7 @@ class PagingLoadStateAdapter<T : Any, VH : RecyclerView.ViewHolder>(
                 btnRetry.isVisible = loadState is LoadState.Error
                 tvErrorMsg.isVisible =
                     !(loadState as? LoadState.Error)?.error?.message.isNullOrBlank()
-                tvErrorMsg.text = (loadState as? LoadState.Error)?.error?.message
+                tvErrorMsg.text = itemView.context.getString(R.string.error_fetching_data)
             }
         }
     }

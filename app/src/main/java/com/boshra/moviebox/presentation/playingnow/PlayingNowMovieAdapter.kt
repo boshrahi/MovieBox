@@ -19,7 +19,6 @@ class PlayingNowMovieAdapter(
     companion object{
         const val SHOW_ITEM = 0
         const val LOADING_ITEM = 1
-        const val NO_ITEM = 2
     }
     inner class MovieViewHolder(private val binding: ItemMoviesListBinding) :
         RecyclerView.ViewHolder(binding.root) {
