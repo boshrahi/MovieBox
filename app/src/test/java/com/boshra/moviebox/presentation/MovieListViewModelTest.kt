@@ -45,7 +45,7 @@ class MovieListViewModelTest {
     }
 
     //------------------------------ Playing Now Movies
-
+    //TODO
 /*    @Test
     fun load_playing_now_movies_successfully() = runBlocking {
 

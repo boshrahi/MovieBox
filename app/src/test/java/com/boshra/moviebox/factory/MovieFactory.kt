@@ -12,7 +12,7 @@ object MovieFactory : DataFactory() {
     }
 
     private fun getMovieWrapperData(pageNumber: Int): MovieWrapperData {
-        return MovieWrapperData(pageNumber, getMovieDataList())
+        return MovieWrapperData(pageNumber, 100, getMovieDataList())
     }
 
     private fun getMovieDataList(): MutableList<MovieData> {
